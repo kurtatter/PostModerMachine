@@ -13,6 +13,14 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 
+class ConsoleTerminal(pygame.sprite.Sprite):
+    def __init__(self):
+        super(ConsoleTerminal).__init__()
+        self.surf = pygame.Surface((400, 120))
+        self.rect = self.surf.get_rect()
+        self.surf.fill((77, 77, 77))
+
+
 class Carret(pygame.sprite.Sprite):
     def __init__(self):
         super(Carret, self).__init__()
@@ -112,6 +120,7 @@ nums = [0, 1, 0, 1, 1, 0, 1, 0, 0, 1] * 20
 nums.append(0)
 tape = Tape(nums=nums)
 carret = Carret()
+terminal = ConsoleTerminal()
 running = True
 
 PADDING = 4
@@ -136,6 +145,7 @@ while running:
         40
     )
     screen.blit(carret.surf, surf_carret_center)
+    screen.blit(terminal.surf, terminal.rect)
     cell_number = abs(tape.rect.x // 40)
     # print(abs(tape.rect.x // 40), bool(nums[cell_number]))
     # pygame.draw.line(screen, (255, 255, 0), [0, 50], [800, 50])
